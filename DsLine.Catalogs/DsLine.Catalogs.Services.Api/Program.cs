@@ -5,10 +5,12 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using DsLine.Core.RabbitMQ;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RawRabbit.Instantiation;
 
 namespace DsLine.Catalogs.Services.Api
 {
@@ -29,7 +31,7 @@ namespace DsLine.Catalogs.Services.Api
                   builder.RegisterAssemblyTypes(Assembly.GetEntryAssembly())
                       .AsImplementedInterfaces();
 
-                  //  builder.AddDispatchers();
+                //  builder.AddDispatchers();
                   builder.AddRabbitMq();
                   builder.Register(s => s.Resolve<IInstanceFactory>().Create());
 
