@@ -27,6 +27,10 @@ namespace DsLine.Catalogs.Services.Api
               .ConfigureContainer<ContainerBuilder>(builder =>
               {
 
+                  builder.RegisterAssemblyTypes(Assembly.Load("DsLine.Catalogs.Services")).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+         
+
 
                   builder.RegisterAssemblyTypes(Assembly.GetEntryAssembly())
                       .AsImplementedInterfaces();

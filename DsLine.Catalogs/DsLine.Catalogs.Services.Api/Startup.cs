@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Consul;
+using DsLine.Catalogs.Services.IntegrationMessages.Events;
 using DsLine.Core.Consul;
 using DsLine.Core.Mvc;
+using DsLine.Core.RabbitMQ;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -56,6 +58,9 @@ namespace DsLine.Catalogs.Services.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseRabbitMq()
+              .SubscribeEvent<CreateOrderEvent>(@namespace: "Orders");
 
             var consulServiceId = app.UseConsul();
             applicationLifetime.ApplicationStopped.Register(() =>

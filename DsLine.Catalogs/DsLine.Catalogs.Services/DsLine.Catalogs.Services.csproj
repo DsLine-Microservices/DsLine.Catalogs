@@ -4,4 +4,15 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\Commands\" />
+    <Folder Include="IntegrationMessages\Commands\" />
+    <Folder Include="Commands\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DsLine.Core.RabbitMQ" Version="1.0.11" />
+  </ItemGroup>
+
 </Project>
